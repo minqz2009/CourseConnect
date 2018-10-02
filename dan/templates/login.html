@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <title>Hospital - Login</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/main.css') }}>
+     </head>
+
+    <body class="bg-dark">
+        <div class="container card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} mx-auto">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <div class="form-label-group">
+                        {% if form.email.errors %}
+                           {{ form.email(class="form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control") }}
+                        {% endif %}
+                        <label for="inputEmail">Email address</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form.password(class="form-control") }}
+                            {% endif %}
+                            <label for="inputPassword">Password</label>
+                        </div>
+                    </div>
+                    {{ form.submit(class="btn btn-primary btn-block")}}
+                </form>
+                <p>New User? <a href="{{ url_for('register') }}">Register</a></p>
+            </div>
+        </div>
+    </body>
+</html> -->
+
+
+

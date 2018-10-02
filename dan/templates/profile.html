@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h1>{{ user.username }}</h1>
+    <hr>	
+    <h3>{{ user.email }}</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <hr/>
+            <div class="review-block">
+                {% for review in user.reviews %}
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="review-block-name"><a href="#">{{review.course.code}}:{{review.course.name}}</a></div>
+                        <div class="review-block-date">{{review.date.strftime("%d-%m-%Y")}}<br/>Today</div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="review-block-rate">
+                            {% for i in range(review.course.rating|int) %}
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            {% endfor %}
+                            {% for i in range(5-review.course.rating|int) %}
+                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            {% endfor %}
+                        </div>
+                        <div class="review-block-title">{{review.title}}</div>
+                        <div id="w74" class="review-block-description">{{review.review}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+
+
+{% endblock %}
+

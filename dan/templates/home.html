@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<body>
+    <h1>CourseConnect</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+                {{ form.search.label(class="form-control-label") }} 
+
+            <div class="form-label-group">
+
+            {% if form.search.errors %}
+               {{ form.search(class="form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for search in form.search.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.search(class="form-control") }}
+            {% endif %}
+            </div>
+            {{ form.course.label(class="form-control-label") }}
+            {{ form.course(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary btn-block")}}
+    </form>
+
+</body>
+</br>
+        <tbody>
+            <div class="auto_container">
+            {% for course in courses %}
+            
+                <div class="small card" onclick="window.open(' {{url_for('course', course_id=course.id)}} ')">
+                    <header class="title" style="color:#fff">{{ course.code }}</header>
+                    <img class="pic" src="http://lorempixel.com/image_output/city-q-g-640-480-9.jpg" alt=""/>
+                    <div class="content">
+                      <strong>{{ course.name }}</strong>
+                      <hr>
+                      
+                        {% for i in range(course.rating|int) %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        {% for i in range(5-course.rating|int) %}
+                        <span class="fa fa-star"></span>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+            {% endfor %}
+            </div>
+        </tbody>
+
+
+{% endblock %}
